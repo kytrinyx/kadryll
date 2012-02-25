@@ -1,0 +1,71 @@
+\version "2.14.2"
+
+\header {
+  tagline = \markup {
+    \fill-line {
+      \line { \null }
+      \line { \null }
+      \line { \tiny \with-color #(x11-color 'gray80) { Copyright 2012 YourName \char ##x00A9 } }
+
+    }
+  }
+}
+
+#(set! paper-alist (cons '("drill" . (cons (* 170 mm) (* 80 mm))) paper-alist))
+\paper {
+  #(set-paper-size "drill")
+  #(define top-margin (* 7 mm))
+  #(define line-width (* 120 mm))
+}
+
+signature = \time 4/4
+
+rh = \drummode { tt4 r4 tt4-> r4 }
+lh = \drummode { r4 tt4 r4 tt4 }
+rf = \drummode { tt4 r4 r4 tt4 }
+lf = \drummode { r1 }
+
+#(define quake '((tamtam default #t 0)))
+quakestaff = {
+  \override DrumStaff.StaffSymbol #'line-positions = #'( 0 )
+  \override DrumStaff.BarLine #'bar-extent = #'(-1 . 1.5)
+  \override DrumStaff.InstrumentName #'self-alignment-X = #LEFT
+  \set DrumStaff.drumStyleTable = #(alist->hash-table quake)
+  \set fontSize = #-2
+  \signature
+  \override DrumStaff.Rest #'staff-position = #0
+}
+
+<<
+\new DrumStaff {
+  \quakestaff
+  \set DrumStaff.instrumentName = "Right Hand "
+  \override Stem #'direction = #UP
+  \rh | \rh | \rh | \rh |
+}
+\new DrumStaff {
+  \quakestaff
+  \set DrumStaff.instrumentName = \markup \left-column {
+    "Left Hand "
+  }
+  \override Stem #'direction = #DOWN
+  \lh | \lh | \lh | \lh
+}
+\new DrumStaff {
+  \quakestaff
+  \set DrumStaff.instrumentName = \markup \left-column {
+    "Right Foot "
+  }
+  \override Stem #'direction = #UP
+  \rf | \rf | \rf | \rf |
+}
+\new DrumStaff {
+  \quakestaff
+  \set DrumStaff.instrumentName = \markup \left-column {
+    "Left Foot "
+  }
+  \override Stem #'direction = #DOWN
+  \lf | \lf | \lf | \lf |
+}
+>>
+
