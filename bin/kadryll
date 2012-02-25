@@ -1,3 +1,8 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
+require 'thor'
 require "kadryll"
+require "kadryll/cli"
+
+Kadryll::CLI.start

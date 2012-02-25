@@ -11,11 +11,11 @@
   }
 }
 
-#(set! paper-alist (cons '("drill" . (cons (* 170 mm) (* 80 mm))) paper-alist))
+#(set! paper-alist (cons '("drill" . (cons (* 190 mm) (* 80 mm))) paper-alist))
 \paper {
   #(set-paper-size "drill")
   #(define top-margin (* 7 mm))
-  #(define line-width (* 120 mm))
+  #(define line-width (* 140 mm))
 }
 
 signature = \time 4/4
@@ -49,7 +49,7 @@ quakestaff = {
     "Left Hand "
   }
   \override Stem #'direction = #DOWN
-  \lh | \lh | \lh | \lh
+  \lh | \lh | \lh | \lh |
 }
 \new DrumStaff {
   \quakestaff

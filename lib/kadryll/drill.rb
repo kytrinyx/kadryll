@@ -6,16 +6,16 @@ module Kadryll
         "#{Kadryll.input_dir}#{name}.ly"
       end
 
-      def from_string(template)
-        drill = parse template
+      def from_string(template, options = {})
+        drill = parse template, options
         drill.write
         drill
       end
 
-      def parse(template)
+      def parse(template, options = {})
         data, *measures = template.split("\n").map(&:strip)
         name, time = data.split(" ")
-        new(name, time, measures)
+        new(name, time, measures, options)
       end
     end
 
@@ -65,11 +65,11 @@ module Kadryll
         }
       }
 
-      #(set! paper-alist (cons '("drill" . (cons (* 170 mm) (* 80 mm))) paper-alist))
+      #(set! paper-alist (cons '("drill" . (cons (* 190 mm) (* 80 mm))) paper-alist))
       \\paper {
         #(set-paper-size "drill")
         #(define top-margin (* 7 mm))
-        #(define line-width (* 120 mm))
+        #(define line-width (* 140 mm))
       }
 
       signature = \\time #{time}
@@ -103,7 +103,7 @@ module Kadryll
           "Left Hand "
         }
         \\override Stem #'direction = #DOWN
-        \\lh | \\lh | \\lh | \\lh
+        \\lh | \\lh | \\lh | \\lh |
       }
       \\new DrumStaff {
         \\quakestaff

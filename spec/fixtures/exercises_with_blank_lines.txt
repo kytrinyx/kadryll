@@ -1,0 +1,13 @@
+exercise1 4/4
+r1
+r4 tt4 r4 4
+r1
+r1
+
+
+exercise2 4/4
+r2 tt4 r4
+r4 tt4 r4 tt4
+tt4 r4 tt4 r4
+r1
+
