@@ -40,12 +40,34 @@ describe Kadryll::Drill do
     Approvals.verify(executable, :name => 'drill uses the correct command')
   end
 
-
-  it "generates a png" do
+  it "creates the correct template" do
     drill = Kadryll::Drill.from_string(default_template)
     executable = Approvals::Executable.new(drill.template) do |command|
       Approvals::Reporters::FilelauncherReporter.report(drill.generate_png)
     end
     Approvals.verify(executable, :name => 'drill generates the template')
+  end
+
+  describe "copyright" do
+    after(:each) do
+      Kadryll.configure do |c|
+        c.copyright = nil
+      end
+    end
+
+    it "is skipped entirely if it is set to empty string" do
+      Kadryll.configure do |c|
+        c.copyright = ''
+      end
+      Kadryll::Drill.new("name", "time", ["measures"]).copyright.should eq("\\null")
+    end
+
+    it "uses the configuration to build the markup" do
+      Kadryll.configure do |c|
+        c.copyright = 'All your notes are belong to me'
+      end
+      copyright = Kadryll::Drill.new("name", "time", ["measures"]).copyright
+      Approvals.verify(copyright, :name => 'overridden copyright')
+    end
   end
 end

@@ -56,12 +56,7 @@ module Kadryll
 
       \\header {
         tagline = \\markup {
-          \\fill-line {
-            \\line { \\null }
-            \\line { \\null }
-            \\line { \\tiny \\with-color #(x11-color 'gray80) { #{Kadryll.copyright} \\char ##x00A9 } }
-
-          }
+          #{copyright}
         }
       }
 
@@ -124,6 +119,20 @@ module Kadryll
       >>
 
       DRILL
+    end
+
+    def copyright
+      if Kadryll.copyright.empty?
+        "\\null"
+      else
+        <<-COPYRIGHT.gsub(/^\ {6}/, '')
+        \\fill-line {
+          \\line { \\null }
+          \\line { \\null }
+          \\line { \\tiny \\with-color #(x11-color 'gray80) { #{Kadryll.copyright} \\char ##x00A9 } }
+        }
+        COPYRIGHT
+      end
     end
 
     private

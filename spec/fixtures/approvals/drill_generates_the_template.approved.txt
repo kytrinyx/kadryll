@@ -2,12 +2,12 @@
 
 \header {
   tagline = \markup {
-    \fill-line {
-      \line { \null }
-      \line { \null }
-      \line { \tiny \with-color #(x11-color 'gray80) { Copyright 2012 YourName \char ##x00A9 } }
+      \fill-line {
+    \line { \null }
+    \line { \null }
+    \line { \tiny \with-color #(x11-color 'gray80) { Copyright 2012 YourName \char ##x00A9 } }
+  }
 
-    }
   }
 }
 

@@ -1,0 +1,5 @@
+  \fill-line {
+    \line { \null }
+    \line { \null }
+    \line { \tiny \with-color #(x11-color 'gray80) { All your notes are belong to me \char ##x00A9 } }
+  }
