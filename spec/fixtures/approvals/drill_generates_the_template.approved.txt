@@ -23,7 +23,7 @@ signature = \time 4/4
 rh = \drummode { tt4 r4 tt4-> r4 }
 lh = \drummode { r4 tt4 r4 tt4 }
 rf = \drummode { tt4 r4 r4 tt4 }
-lf = \drummode { r1 }
+lf = \drummode { R4*4 }
 
 #(define quake '((tamtam default #t 0)))
 quakestaff = {

@@ -1,0 +1,1 @@
+lilypond --png --output=/tmp/scores/foo /tmp/data/foo.ly

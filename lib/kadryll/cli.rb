@@ -15,7 +15,7 @@ module Kadryll
       exercises = Kadryll::ShorthandReader.read(options[:input])
       exercises.each do |exercise|
         drill = Kadryll::Drill.from_string(exercise, :prefix => options[:prefix])
-        drill.generate_png
+        drill.to_png
       end
     end
   end

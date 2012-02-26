@@ -1,8 +1,9 @@
 require 'fileutils'
 require 'singleton'
 require 'date'
-require 'kadryll/drill'
+require 'kadryll/score_writer'
 require 'kadryll/shorthand_reader'
+require 'kadryll/drill'
 
 module Kadryll
   class << self

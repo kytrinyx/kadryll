@@ -1,1 +1,0 @@
-lilypond --png --output=drills/scores/e42 drills/data/e42.ly

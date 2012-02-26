@@ -2,52 +2,36 @@ module Kadryll
   class Drill
 
     class << self
-      def lilypond_file(name)
-        "#{Kadryll.input_dir}#{name}.ly"
-      end
-
       def from_string(template, options = {})
-        drill = parse template, options
-        drill.write
+        drill = parse template
+        writer = Kadryll::ScoreWriter.new(drill.name, :prefix => options[:prefix])
+        drill.writer = writer
+
+        writer.write(drill.template)
         drill
       end
 
-      def parse(template, options = {})
+      def parse(template)
         data, *measures = template.split("\n").map(&:strip)
         name, time = data.split(" ")
-        new(name, time, measures, options)
+        new(name, time, measures)
       end
     end
 
     attr_accessor :name, :time, :right_hand, :left_hand, :right_foot, :left_foot
-    def initialize(name, time, measures, options = {})
-      self.name = build_name(name, options[:prefix])
+    attr_writer :writer
+    def initialize(name, time, measures)
+      self.name = name
       self.time = time
       self.right_hand, self.left_hand, self.right_foot, self.left_foot = measures
     end
 
-    def command
-      "lilypond --png --output=#{output_to} #{lilypond_file}"
+    def writer
+      @writer ||= Kadryll::ScoreWriter.new(name)
     end
 
-    def generate_png
-      system(command)
-      "#{output_to}.png"
-    end
-
-    def output_to
-      "#{Kadryll.output_dir}#{name}"
-    end
-
-    def write
-      Kadryll.initialize
-      File.open(lilypond_file, 'w') do |file|
-        file.write template
-      end
-    end
-
-    def lilypond_file
-      Drill.lilypond_file(name)
+    def to_png
+      writer.generate_png
     end
 
     def template
@@ -133,11 +117,6 @@ module Kadryll
         }
         COPYRIGHT
       end
-    end
-
-    private
-    def build_name(name, prefix)
-      [prefix, name].compact.join('_').gsub(/[^\w\.\-]/, '')
     end
 
   end
