@@ -6,7 +6,7 @@ def default_template
     e42 4/4
     tt4 r4 tt4-> r4
     r4 tt4 r4 tt4
-    tt4 r4 r4 tt4
+    \\times 2/3 {tt8 tt8 tt8} tt4 tt4 tt4
     R4*4
   DRILL
 end
