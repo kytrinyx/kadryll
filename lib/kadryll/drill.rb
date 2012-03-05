@@ -64,7 +64,7 @@ module Kadryll
         \\override DrumStaff.BarLine #'bar-extent = #'(-1 . 1.5)
         \\override DrumStaff.InstrumentName #'self-alignment-X = #LEFT
         \\set DrumStaff.drumStyleTable = #(alist->hash-table quake)
-        \\set fontSize = #-2
+        \\set fontSize = #1
         \\signature
         \\override DrumStaff.Rest #'staff-position = #0
       }
@@ -74,7 +74,7 @@ module Kadryll
         \\quakestaff
         \\set DrumStaff.instrumentName = "Right Hand "
         \\override Stem #'direction = #UP
-        \\rh | \\rh | \\rh | \\rh |
+        \\rh |
       }
       \\new DrumStaff {
         \\quakestaff
@@ -82,7 +82,7 @@ module Kadryll
           "Left Hand "
         }
         \\override Stem #'direction = #DOWN
-        \\lh | \\lh | \\lh | \\lh |
+        \\lh |
       }
       \\new DrumStaff {
         \\quakestaff
@@ -90,7 +90,7 @@ module Kadryll
           "Right Foot "
         }
         \\override Stem #'direction = #UP
-        \\rf | \\rf | \\rf | \\rf |
+        \\rf |
       }
       \\new DrumStaff {
         \\quakestaff
@@ -98,7 +98,7 @@ module Kadryll
           "Left Foot "
         }
         \\override Stem #'direction = #DOWN
-        \\lf | \\lf | \\lf | \\lf |
+        \\lf |
       }
       >>
 
